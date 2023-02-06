@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+<div class ="row">
+<div class="col-2">
+</div>
+<div class="col-8 mt-3">
+
+    <form action="{% url 'feedback' %}" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% for f in form %}
+
+        <div class="mb-3"><p>
+            <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>
+            {{ f }}</p>
+        </div>
+
+        {% endfor %}
+        <button type="submit" class="btn btn-primary mb-5 mt-5">SEND</button>
+
+    </form>
+
+</div>
+</div>
+</div>
+{% endblock %}

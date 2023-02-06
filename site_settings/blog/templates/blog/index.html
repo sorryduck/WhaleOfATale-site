@@ -1,0 +1,99 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load blog_tags %}
+<div class="container-fluid">
+
+    <div class="col bg-light">
+
+        {% for p in posts %}
+        <div class="card m-3 shadow">
+            <div class="row g-0">
+                <div class="col-2">
+                    {% if p.photo %}
+                    <img class="img-fluid rounded-start" src="{{ p.photo.url }}" style="width: 400px">
+                    {% endif %}
+                </div>
+
+                <div class="col-10">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ p.title }}</h5>
+                        <p class="card-text">{{ p.content | linebreaks | truncatewords:40}}</p>
+                        <p class="card-text"><small class="text-muted">{{ p.time_update }}</small></p>
+
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+
+                            <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade"
+                                 data-bs-backdrop="static"
+                                 data-bs-keyboard="false" id="{{ p.slug }}" tabindex="-1">
+                                <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ p.title }}</h1>
+                                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                                    type="button"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+
+                                            {% if p.photo %}
+
+                                            <img class="img-fluid rounded float-start me-3" src="{{ p.photo.url }}"
+                                                 style="width: 400px">
+
+                                            {% endif %}
+
+                                            {{ p.content | linebreaks }}
+
+                                            <form action="" enctype="multipart/form-data"
+                                                  method="post">
+
+                                                {% csrf_token %}
+
+
+                                                <div class="mb-3">
+                                                    <p>
+                                                        <label class="form-label" for="{{ f.id_for_label }}">
+                                                            {{ form.username.label }}:
+                                                        </label>
+                                                        {{ form.username }}
+
+                                                        <label class="form-label" for="{{ f.id_for_label }}">
+                                                            {{ form.text.label }}:
+                                                        </label>
+                                                        {{ form.text }}
+
+                                                        <input id="id_article" name="article" type="hidden"
+                                                               value="{{ p.pk }}">
+                                                    </p>
+
+                                                    <button class="btn btn-primary mb-3 mt-3" type="submit">SEND
+                                                    </button>
+                                                </div>
+
+                                            </form>
+
+                                            {% comment_section p.pk %}
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <a class="stretched-link" data-bs-target="#{{ p.slug }}" data-bs-toggle="modal" href=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

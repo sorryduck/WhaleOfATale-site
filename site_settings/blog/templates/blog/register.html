@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 pt-5 mt-5 pb-5 mb-5">
+            <h1 class="pb-5">{{title}}</h1>
+            <form method="post">
+                {% csrf_token %}
+                {% for f in form %}
+
+                <div class="mb-3">
+                <p>
+                    <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>
+                    {{ f }}
+                    {{ f.errors }}
+                </p>
+                </div>
+
+                {% endfor %}
+                <button class="btn btn-primary mb-3 mt-3" type="submit">Sign up</button>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+{% endblock %}
