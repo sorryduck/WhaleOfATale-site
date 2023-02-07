@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://whaleofatale.up.railway.app/', '127.0.0.1', '0.0.0.0']
+CSRF_TRUSTED_ORIGINS = ['https://whaleofatale.up.railway.app/']
 
 WSGI_APPLICATION = 'site_settings.wsgi.application'
 
