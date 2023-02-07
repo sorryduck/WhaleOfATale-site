@@ -1,8 +1,8 @@
 {% load blog_tags %}
 {% load static %}
-<div class="container-fluid">
+<div class="container-fluid-sm">
 
-    <nav class="navbar navbar-expand bg-light">
+    <nav class="navbar navbar-expand-sm bg-light">
 
         <a class="navbar-brand" href="{% url 'home' %}">
             <img height="45" src="{% static '/blog/images/logo.png' %}" width="45">
@@ -17,10 +17,6 @@
             {% menu_list %}
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'ocean_news' %}">Ocean News</a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link" href="{% url 'feedback' %}">Feedback</a>
             </li>
 
@@ -30,26 +26,27 @@
 
         </ul>
 
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
-            <ul class="navbar-nav ms-auto flex-nowrap">
 
-                {% if not request.user.is_authenticated %}
-                <li class="nav-item me-2">
-                    <a class="btn btn-info nav-link" href="{% url 'register' %}" role="button">Sign Up</a>
-                </li>
-                <li class="nav-item me-2">
-                    <a class="btn btn-info nav-link" href="{% url 'login' %}" role="button">Sign In</a>
-                </li>
-                {% else %}
-                <li class="nav-item me-2">
-                    <a class="btn btn-info nav-link" href="{% url 'logout' %}" role="button">Logout</a>
-                </li>
-                {% endif %}
+        <ul class="navbar-nav ms-auto">
 
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item me-2">
+                <a class="btn btn-info nav-link" href="{% url 'register' %}" role="button">Sign Up</a>
+            </li>
+            <li class="nav-item me-2">
+                <a class="btn btn-info nav-link" href="{% url 'login' %}" role="button">Sign In</a>
+            </li>
+            {% else %}
+            <li class="nav-item me-2">
+                <a class="btn btn-info nav-link" href="{% url 'logout' %}" role="button">Logout</a>
+            </li>
+            {% endif %}
+            <li class="nav-item me-2">
                 <form action="{% url 'search' %}" method="get">
                     <input class="form-control" id="search" name="q" placeholder="Search..." type="text">
                 </form>
-            </ul>
-        </div>
-    </nav>
+            </li>
+        </ul>
 </div>
+
+
