@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-CSRF_COOKIE_SECURE = True
+
 CSRF_TRUSTED_ORIGINS = ['https://whaleofatale.up.railway.app/']
 
 WSGI_APPLICATION = 'site_settings.wsgi.application'
