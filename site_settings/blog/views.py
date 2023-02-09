@@ -114,7 +114,7 @@ class SearchView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         object_list = Article.objects.filter(
-            Q(content__icontains=query) | Q(title__icontains=query)
+            Q(content__iexact=query) | Q(title__iexact=query)
         )
 
         return object_list
