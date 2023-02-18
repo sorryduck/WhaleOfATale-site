@@ -74,7 +74,7 @@ python manage.py runserver
 * FeedbackForm: form for feedback
 * CommentForm: form for adding comments to articles
 
-## Models
+### Models
 * ArticleCommentaries: model for article comments
 * Article: model for articles
 * Category: model for article categories
